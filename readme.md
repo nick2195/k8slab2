@@ -1,10 +1,12 @@
 ## practice in k8s and kind
 
 **Cluster from project "k8slab"**
+---------
+
+*Output from:  **kubectl describe pod my-pod**
 
 
-*Output from:*
-**kubectl describe pod my-pod**
+
 Name:             my-pod
 Namespace:        default
 Priority:         0
@@ -48,9 +50,10 @@ QoS Class:                   BestEffort
 Node-Selectors:              <none>
 Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
                              node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+
+
 Events:
   Type    Reason     Age   From               Message
-  ----    ------     ----  ----               -------
   Normal  Scheduled  16m   default-scheduler  Successfully assigned default/my-pod to **k8s-worker2**
   Normal  Pulling    16m   kubelet            Pulling image "nginx:1.12"
   Normal  Pulled     15m   kubelet            Successfully pulled image "nginx:1.12" in 18.032222807s
@@ -59,7 +62,11 @@ Events:
 
 
 
-  kubectl get po --show-labels
+-----------
+
+  **kubectl get po --show-labels**
+
+
 |NAME  | 
 ---               READY|   STATUS  |  RESTARTS |  AGE  | LABELS
 |my-pod                1/1     Running   0          49m   <none>
