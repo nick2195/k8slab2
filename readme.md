@@ -67,9 +67,11 @@ Events:
   **kubectl get po --show-labels**
 
 
-|NAME  | 
----               READY|   STATUS  |  RESTARTS |  AGE  | LABELS
+|NAME  |           READY|   STATUS  |  RESTARTS |  AGE  | LABELS
+-----
 |my-pod                1/1     Running   0          49m   <none>
+-----
 |my-replicaset-52zt9   1/1     Running   0          64s   app=my-app-1
+-----
 |my-replicaset-8x8rj   1/1     Running   0          64s   app=my-app-1
 
