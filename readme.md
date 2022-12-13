@@ -86,3 +86,12 @@ my-pod                1/1     Running   0          93m \
 my-replicaset-52zt9   1/1     Running   0          45m \
 my-replicaset-8x8rj   1/1     Running   0          45m \
 my-replicaset-sxs4r   1/1     Running   0          32s 
+  
+ -----------
+ ### Delete all
+ **kubectl delete all --all**
+pod "my-pod" deleted
+pod "my-replicaset-52zt9" deleted
+pod "my-replicaset-8x8rj" deleted
+service "kubernetes" deleted
+replicaset.apps "my-replicaset" deleted
