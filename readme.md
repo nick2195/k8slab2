@@ -3,7 +3,8 @@
 **Cluster from project "k8slab"**
 
 
-Output from:  **kubectl describe pod my-pod**
+*Output from:*
+**kubectl describe pod my-pod**
 Name:             my-pod
 Namespace:        default
 Priority:         0
