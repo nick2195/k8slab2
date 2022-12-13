@@ -56,3 +56,13 @@ Events:
   Normal  Pulled     15m   kubelet            Successfully pulled image "nginx:1.12" in 18.032222807s
   Normal  Created    15m   kubelet            Created container nginx
   Normal  Started    15m   kubelet            Started container nginx
+
+
+
+  kubectl get po --show-labels
+|NAME  | 
+---               READY|   STATUS  |  RESTARTS |  AGE  | LABELS
+|my-pod                1/1     Running   0          49m   <none>
+|my-replicaset-52zt9   1/1     Running   0          64s   app=my-app-1
+|my-replicaset-8x8rj   1/1     Running   0          64s   app=my-app-1
+
