@@ -72,3 +72,17 @@ Events:
 | my-pod              | 1/1   | Running | 0        | 49m | <none>       |
 | my-replicaset-52zt9 | 1/1   | Running | 0        | 64s | app=my-app-1 |
 | my-replicaset-8x8rj | 1/1   | Running | 0        | 64s | app=my-app-1 |
+
+-----------
+### scale number of replicas in "my-replicaset"
+
+**kubectl scale replicaset my-replicaset --replicas=3** /
+*replicaset.apps/my-replicaset scaled* /
+
+**root@book:/home/nick/k8slab2# kubectl get po -w** /
+
+NAME                  READY   STATUS    RESTARTS   AGE/
+my-pod                1/1     Running   0          93m/
+my-replicaset-52zt9   1/1     Running   0          45m/
+my-replicaset-8x8rj   1/1     Running   0          45m/
+my-replicaset-sxs4r   1/1     Running   0          32s/
