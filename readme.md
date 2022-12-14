@@ -100,3 +100,17 @@ replicaset.apps "my-replicaset" deleted
 ----------
 ### Change image in deployment 
 **kubectl set image deployment my-deployment '*=nginx:1.14'**  
+
+
+----------
+### Deployment with requests and limits
+Р/л можно посмотреть наглядно с помощью **systemd -cdls**
+
+QoS classes:
+
+BestEfford - когда р/л не заданы    
+Guaranteed - когда р/л одинаковые
+Burstable - когда р/л отличаются
+
+При нехватки памяти на ноде и ОМKiller, и куб будет сначала эвакуировать BestEfford поды, затем Burstable, только потом Guaranteed
+При 
