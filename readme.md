@@ -104,7 +104,43 @@ replicaset.apps "my-replicaset" deleted
 
 ----------
 ### Deployment with requests and limits
-Р/л можно посмотреть наглядно с помощью **systemd -cdls**
+Р/л можно посмотреть наглядно с помощью **systemd-cdls**
+
+kubelet.slice  
+  │   ├─kubelet.service  
+  │   │ └─22018 /usr/bin/kubelet --bootstrap-kubeconfig=/etc/kubernetes/bootstrap-kubelet.conf --kubeconfig=/etc/kubernetes/kubelet.conf -->  
+  │   └─kubelet-kubepods.slice  
+  │     ├─kubelet-kubepods-besteffort.slice  
+  │     │ └─kubelet-kubepods-besteffort-pod6de31acc_3b6d_4fe3_bd53_2cc9ddcd1b0e.slice  
+  │     │   ├─cri-containerd-8447f8fa852e0fb592bb4bc23c5f46f5c0ce260c63fab167629176e7695d5209.scope …  
+  │     │   │ └─22240 /pause  
+  │     │   └─cri-containerd-93b19f093cb98ef412b77b3299cf1135433922cd0c52a72d77de7ea1cee387c3.scope …  
+  │     │     └─78694 /usr/local/bin/kube-proxy --config=/var/lib/kube-proxy/config.conf --hostname-override=k8s-worker  
+  │     ├─kubelet-kubepods-burstable.slice  
+  │     │ ├─kubelet-kubepods-burstable-pod2c93d563_011e_4905_97eb_cb4cd37bd556.slice   
+  │     │ │ ├─cri-containerd-2e87b35582c24ad7b454e279dbb77e988dbac74eba5c468842df1623948c1676.scope …  
+  │     │ │ │ ├─91669 nginx: master process nginx -g daemon off;  
+  │     │ │ │ └─91817 nginx: worker process  
+  │     │ │ └─cri-containerd-b81aab8859a0cd57586808576a21b70cab39330d6c147efd9b6e5236e0f33c7b.scope …  
+  │     │ │   └─91577 /pause  
+  │     │ ├─kubelet-kubepods-burstable-pod42a21974_5b14_4388_ae74_4efeaf94c007.slice  
+  │     │ │ ├─cri-containerd-9bd8c01d73675a7082b75a19b2e60d0ec41191a6d8081868cf08ea75209b8ec6.scope …  
+  │     │ │ │ ├─91751 nginx: master process nginx -g daemon off;  
+  │     │ │ │ └─91816 nginx: worker process  
+  │     │ │ └─cri-containerd-e0cc8c12abec623f09d77a189d0fba622c8e6d36df994b887a343a68179a9570.scope …  
+  │     │ │   └─91637 /pause  
+  │     │ └─kubelet-kubepods-burstable-pod7511d689_6634_4348_89ee_ce03934f78e7.slice  
+  │     │   ├─cri-containerd-424a77da70d80e4b029c7ab53ea6983bae57d627ee0a134f1b150ba0d520dc32.scope …  
+  │     │   │ └─91568 /pause  
+  │     │   └─cri-containerd-51a6855959e7219d800013b80144136848590deca89cd22b4030b7586e90506f.scope …  
+  │     │     ├─91704 nginx: master process nginx -g daemon off;  
+  │     │     └─91818 nginx: worker process  
+  │     └─kubelet-kubepods-pod25cabf10_5d70_47ff_a8ce_d96910a14182.slice  
+  │       ├─cri-containerd-9b47afda2e27f5e211a9ec35020759b3124e24710052be1ae53be8c5abbd12d9.scope …  
+  │       │ └─22247 /pause  
+  │       └─cri-containerd-cf9f031cf67854e2f012f7632b0884dbd9386c581435afc5999a13c5204e609f.scope …  
+  │         └─22606 /bin/kindnetd  
+
 
 QoS classes:
 
@@ -113,4 +149,3 @@ Guaranteed - когда р/л одинаковые
 Burstable - когда р/л отличаются
 
 При нехватки памяти на ноде и ОМKiller, и куб будет сначала эвакуировать BestEfford поды, затем Burstable, только потом Guaranteed
-При 
