@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  name: my-deployment
+spec: 
+  replicas: 6
+  selector: ##выбор по label
+    matchLabels:
+      app: my-app
+  strategy: ##регламент порядка обновления приложения
+    rollingUpdate: 
+      maxSurge: 2 ##насколько можно поднять количество реплик при обновлений по сравнению с тем, что задано в replicas(можно в %)
+      maxUnavailable: 2 ##при процессе обновления разрешается 1 старую реплику погасить
+    type: RollingUpdate    
+  template: ##шаблон какие поды создавать
+    metadata:
+      labels:
+        app: my-app
+    spec:
+      containers:
+        - image: nginx:1.13
+          name: nginx
+          ports:
+            - containerPort: 80
+          readinessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /
+              port: 80
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 1
+          livenessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /
+              port: 80
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 1
+            initialDelaySeconds: 10
+          resources:
+            requests:
+              cpu: 50m
+              memory: 100Mi
+            limits:
+              cpu: 100m
+              memory: 100Mi
