@@ -3,22 +3,22 @@ kind: Deployment
 metadata: 
   name: my-deployment
 spec: 
-  replicas: 2
-  selector: ##
+  replicas: 6
+  selector: ##выбор по label
     matchLabels:
       app: my-app
-  strategy: ##
+  strategy: ##регламент порядка обновления приложения
     rollingUpdate: 
-      maxSurge: 1
-      maxUnavailable: 1
+      maxSurge: 2 ##насколько можно поднять количество реплик при обновлений по сравнению с тем, что задано в replicas(можно в %)
+      maxUnavailable: 2 ##при процессе обновления разрешается 1 старую реплику погасить
     type: RollingUpdate    
-  template: ##
+  template: ##шаблон какие поды создавать
     metadata:
       labels:
         app: my-app
     spec:
       containers:
-        - image: nginx:1.12
+        - image: nginx:1.13
           name: nginx
           ports:
             - containerPort: 80
